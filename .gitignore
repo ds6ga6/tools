@@ -6,5 +6,7 @@
 
 backup/
 
-./vscode
+.vscode
 tools/.vscode
+
+try/
