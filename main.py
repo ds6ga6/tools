@@ -1,21 +1,60 @@
 '''
-参考：https://www.runoob.com/python/python-gui-tkinter.html
+创建新笔记，影响
+1. md_notes/ 下
+2. xx.md
 '''
 
-# Python2.x 导入方法
-from tkinter import *           # 导入 Tkinter 库
-# Python3.x 导入方法
-#from tkinter import *
-root = Tk()                     # 创建窗口对象的背景色
-# 创建两个列表
-li = ['C', 'python', 'php', 'html', 'SQL', 'java']
+import time
+import os
 
-listb = Listbox(root)  # 创建两个列表组件
+stmp = time.localtime() # 获得当前时间
+datastring = time.strftime('%Y-%m-%d %H:%M:%S', stmp) # 输出格式为 @data: 0000-00-00 00:00:00
+xxname = time.strftime('%m.md', stmp)
 
-for item in li:                 # 第一个小部件插入数据
-    listb.insert(0, item)
+if(os.listdir('md_notes')!=[]):
+	old_filename = os.listdir('md_notes')[-1]
+	id = int(old_filename[:3]) + 1
+	old_name1 = old_filename[3:-3]
+	# 对比上次的 topic_name 是否修改
+	temp_name1 = 'md_notes\\' + old_filename
+	with open(temp_name1, 'r', encoding='utf-8') as f:
+		old_name2 = f.readline()[8:-1]
+	if(old_name1!=old_name2):
+		temp_name2 = 'md_notes\\' + old_filename[:3] + old_name2 + '.md'
+		# 改 xx.md 中的内容
+		temp_str1 = '[' + old_name1 + '](' + temp_name1 + ')'
+		temp_str2 = '[' + old_name2 + '](' + temp_name2 + ')'
+		with open(xxname, 'r', encoding='utf-8') as f:
+			xxdata = f.read()
+		xxdata = xxdata.replace(temp_str1, temp_str2)
+		with open(xxname, 'w', encoding='utf-8') as f:
+			f.write(xxdata)
+		# 改文件名
+		os.rename(temp_name1, temp_name2)
+else:
+	id = 0
 
+topic_name = input("NAME IS : ")
+topic_filename = 'md_notes\\' + '%03d' % id + topic_name + '.md' # 完整的相对路径
 
-listb.pack()                    # 将小部件放置到主窗口中
+# 将这次的 topic 加入到 xx.md 中
 
-root.mainloop()                 # 进入消息循环
+with open(xxname, 'r', encoding='utf-8') as f:
+	xxdata = f.read()
+
+xxtemp = datastring + ' | [' + topic_name + '](' + topic_filename + ')'
+xxdata = xxdata.replace('\n【XX END】', '\n' + xxtemp + '\n【XX END】')
+
+with open(xxname, 'w', encoding='utf-8') as f:
+	f.write(xxdata)
+
+# 在 md_notes 中创建这次的 topic_file 并用typora打开
+
+with open(topic_filename, 'w', encoding='utf-8') as f:
+	f.write('@topic: ' + topic_name + '\n')
+	f.write('@data:' + datastring + '\n')
+	f.write('\n---\n\n')
+
+os.system('start ' + topic_filename)
+
+pass
