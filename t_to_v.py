@@ -4,7 +4,7 @@
 
 import re
 
-with open('t.md', 'r') as f:
+with open('t.md', 'r', encoding='utf-8') as f:
 	lines = f.readlines()
 	while(lines[0]=='\n'):
 		lines = lines[1:]
@@ -15,7 +15,7 @@ with open('t.md', 'r') as f:
 isEnd = [False] * 6
 strings = ['topic', 'subtopic', 'h3', 'h4', 'h5', 'h6']
 
-with open('v.md', 'w') as f:
+with open('v.md', 'w', encoding='utf-8') as f:
 	for line in lines:
 		if(re.match('[#]+ ', line)):
 			num = len(re.match('[#]+ ', line).group()) - 2
