@@ -4,8 +4,17 @@
 2. xx.md
 '''
 
+workspace = ''
+# workspace = '专用集成电路设计技术基础'
+# workspace = '计算机组成与系统结构'
+# workspace = '人工智能'
+# workspace = '数字图像处理'
+# workspace = '数字信号处理'
+# workspace = '研究生相关'
+
 import time
 import os
+import re
 
 stmp = time.localtime() # 获得当前时间
 datastring = time.strftime('%Y-%m-%d %H:%M:%S', stmp) # 输出格式为 @data: 0000-00-00 00:00:00
@@ -44,6 +53,14 @@ with open(xxname, 'r', encoding='utf-8') as f:
 
 xxtemp = datastring + ' | [' + topic_name + '](' + topic_filename + ')'
 xxdata = xxdata.replace('\n【XX END】', '\n' + xxtemp + '\n【XX END】')
+
+if(workspace!=''):
+	wp = '【'+workspace+'】'
+	if(re.search('\n'+wp, xxdata)):
+		xxdata = xxdata.replace('\n' + wp, '\n' + xxtemp + '\n' + wp)
+	else:
+		xxdata += '\n\n' + xxtemp + '\n' + wp
+	
 
 with open(xxname, 'w', encoding='utf-8') as f:
 	f.write(xxdata)
