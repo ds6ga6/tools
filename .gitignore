@@ -4,4 +4,7 @@
 
 *.xlsx
 
-需求.*
+backup/
+
+./vscode
+tools/.vscode
