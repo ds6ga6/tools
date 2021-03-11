@@ -4,6 +4,7 @@
 
 *.xlsx
 *.png
+*.jpg
 
 backup/
 

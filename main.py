@@ -4,6 +4,8 @@
 2. xx.md
 '''
 
+GET_WORKSPACE_BY_GUI = False
+
 workspace = ''
 # workspace = '专用集成电路设计技术基础'
 # workspace = '计算机组成与系统结构'
@@ -17,11 +19,52 @@ import os
 import re
 
 ################################################################################
-# 参考：https://blog.csdn.net/qq_38970783/article/details/88803931
-# 通过界面选取 workspace 和 topic_name
+# 参考文档：002在gui中选择workspace与输入name.md
+# 修改 GET_WORKSPACE_BY_GUI 来决定是否使用以下代码
 ################################################################################
 
-pass
+import tkinter as tk
+
+class InitTopic(tk.Frame):
+	def __init__(self, workspaceList, master=None):
+		super().__init__(master)
+		self.workspaceList = workspaceList
+		self.grid()
+		self.createWidget()
+
+	def createWidget(self):
+		self.v = tk.StringVar()
+		self.v.set(self.workspaceList[0])
+		
+		for i in range(0, len(self.workspaceList)):
+			rbtn = tk.Radiobutton(self, text=workspaceList[i], value=workspaceList[i], variable=self.v)
+			rbtn.grid(sticky='W')
+
+		tk.Button(self, text='确定', command=self.confirm).grid(sticky='W')
+	
+	def confirm(self):
+		self.workspace = self.v.get()
+		self.quit()
+
+if(GET_WORKSPACE_BY_GUI==True):
+	workspaceList = [
+		'无',
+		'专用集成电路设计技术基础',
+		'计算机组成与系统结构',
+		'人工智能',
+		'数字图像处理',
+		'数字信号处理',
+		'研究生相关'
+	]
+
+	initTopic = InitTopic(workspaceList)
+	initTopic.master.title('init')
+	initTopic.mainloop()
+
+	workspace = initTopic.workspace
+
+	if(workspace=='无'):
+		workspace = ''
 
 ################################################################################
 
