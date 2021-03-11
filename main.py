@@ -70,6 +70,7 @@ with open(xxname, 'w', encoding='utf-8') as f:
 with open(topic_filename, 'w', encoding='utf-8') as f:
 	f.write('@topic: ' + topic_name + '\n')
 	f.write('@data:' + datastring + '\n')
+	f.write('@keywords: \n')
 	f.write('\n---\n\n')
 
 os.system('start ' + topic_filename)
