@@ -15,14 +15,13 @@ workspace = ''
 import time
 import os
 import re
-import Tkinter as tk
 
 ################################################################################
 # 参考：https://blog.csdn.net/qq_38970783/article/details/88803931
 # 通过界面选取 workspace 和 topic_name
 ################################################################################
 
-
+pass
 
 ################################################################################
 
@@ -43,6 +42,10 @@ if(os.listdir('md_notes')!=[]):
 	temp_name1 = 'md_notes\\' + old_filename
 	with open(temp_name1, 'r', encoding='utf-8') as f:
 		old_name2 = f.readline()[8:-1]
+		# 去掉不能作为文件名的字符
+		ban_character = ['\\', '/', ':', '*', '?', '"', '<', '>', '|']
+		for ch in ban_character:
+			old_name2 = old_name2.replace(ch, '')
 	if(old_name1!=old_name2):
 		temp_name2 = 'md_notes\\' + old_filename[:3] + old_name2 + '.md'
 		# 改 xx.md 中的内容
