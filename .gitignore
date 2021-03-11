@@ -3,6 +3,7 @@
 !readme.md
 
 *.xlsx
+*.png
 
 backup/
 
