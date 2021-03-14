@@ -1,0 +1,10 @@
+{
+	"haha": {
+		"command": "python haha.py",
+		"description": "打开 haha.md，写入时间并编辑"
+	},
+	"new_notes": {
+		"fileload": "python new_notes.py",
+		"description": "创建新笔记"
+	}
+}
