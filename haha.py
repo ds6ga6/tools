@@ -6,7 +6,7 @@ import time
 import os
 import re
 
-FILENAME = 'haha.md'
+FILENAME = 'source\\haha.md'
 ENDLABEL = '【END】'
 
 ################################################################################
