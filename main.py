@@ -107,6 +107,12 @@ else:
 ################################################################################
 
 topic_name = input("NAME IS : ")
+
+# 修复有时运行程序时莫名将 NAME 设为以下内容的 bug
+while(topic_name=='C:/Users/11648/anaconda3/Scripts/activate'):
+	topic_name = input("NAME IS : ")
+
+
 topic_filename = 'md_notes\\' + '%03d' % id + topic_name + '.md' # 完整的相对路径
 
 ################################################################################
