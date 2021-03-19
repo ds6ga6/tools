@@ -1,13 +1,5 @@
-*.md
-!README.md
-!readme.md
+.vscode/*
 
-*.xlsx
-*/.picture/*
+main.md
 
-backup/
-
-.vscode
-tools/.vscode
-
-try/
+try/*
