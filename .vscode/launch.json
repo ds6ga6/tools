@@ -6,7 +6,7 @@
 			"request": "launch",
 			"program": "${file}",
 			"console": "integratedTerminal",
-			"args": ["-c", "test", "-f", "test1"]
+			"args": ["${input:variableID}"]
 		},
 		{
 			"name": "Python: main",
@@ -29,5 +29,19 @@
 				"${pathSeparator}"				//	/ on macOS or linux, \\ on Windows
 			]
 		}
-	]
+	],
+
+	"inputs": [
+		{
+			"id": "variableID",
+			"type": "pickString",
+			// type specific configuration attributes
+			"options": [
+				"1",
+				"2",
+				"3"
+			],
+			"description": "none"
+		}
+	],
 }

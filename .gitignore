@@ -9,3 +9,5 @@ tools/notes/*
 tools/config/register_notes.json
 
 tools/.source/*
+
+bulk_tools/*
