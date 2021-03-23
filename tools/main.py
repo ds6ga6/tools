@@ -42,6 +42,7 @@ def exec_command(command, commandType='auto'):
 		else:
 			os.system(command)	# BUG 这里没有对命令是否是 cmd 命令做判断
 	else:
+		print("还不支持 auto 之外的命令")
 		pass
 	
 
@@ -50,6 +51,9 @@ if(args['relativeFile']=='main.md'):
 	# 打开命令，并读取对应的行
 	with open(args['relativeFile'], 'r', encoding='utf-8') as f:
 		command = f.readlines()[args['lineNumber']-1]
+	# 判断是否是 inline command, 如果是就切出来
+	if(command.count('`')>=2):
+		command = command.split('`', 2)[1]
 	exec_command(command)
 # 对其他文件
 else:
