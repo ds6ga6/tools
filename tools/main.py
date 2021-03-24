@@ -1,6 +1,7 @@
 import sys
 import os
 import json
+import time
 
 REGISTER_FILELOAD = 'tools/config/register_command.json'
 CODE_LOAD = 'tools/code/'
