@@ -41,14 +41,14 @@ def exec_command(command, commandType='auto'):
 			new_command = 'python ' + CODE_LOAD + commandDict[commandsplit[0]] + ' ' + commandsplit[1]
 			os.system(new_command)
 		else:
-			os.system(command)	# BUG 这里没有对命令是否是 cmd 命令做判断
+			os.system(command)	# TODO 这里没有对命令是否是 cmd 命令做判断
 	else:
 		print("还不支持 auto 之外的命令")
 		pass
 	
 
-# 对 main.md
-if(args['relativeFile']=='main.md'):
+# 对 markdown 文件
+if(args['fileExtname']=='.md'):
 	# 打开命令，并读取对应的行
 	with open(args['relativeFile'], 'r', encoding='utf-8') as f:
 		command = f.readlines()[args['lineNumber']-1]

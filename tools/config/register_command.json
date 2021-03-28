@@ -1,3 +1,10 @@
 {
-	
+	"new": {
+		"filedir": "",
+		"filename": "newCommandOrNotes.py",
+		"commandName": "new",
+		"commandArguments": "cf",
+		"testFilename": "",
+		"description": "new.md"
+	}
 }

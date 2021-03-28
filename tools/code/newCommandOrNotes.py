@@ -5,7 +5,7 @@ import os
 import json
 
 REGISTER_FILELOAD = 'tools/config/register_command.json'
-MD_LOAD = 'tools/.source/'
+MD_LOAD = 'tools/help/'
 BACKUP_LOAD = 'tools/.source/backup/'
 CODE_LOAD = 'tools/code/'
 
@@ -36,10 +36,12 @@ def newCommandOrNotes(arg):
 		commandName = arg['c']
 		if('f' in arg.keys()):
 			assert len(arg) == 2
-			filename = arg['f']
+			filename = arg['f'] + '.py'
 		else:
 			assert len(arg) == 1
 			filename = commandName + '.py'
+		
+		
 		
 		# 检测是否存在该命令
 		with open(REGISTER_FILELOAD, 'r', encoding='utf-8') as f:
@@ -75,7 +77,7 @@ def newCommandOrNotes(arg):
 			f.write('\tfor argvs in sys.argv[1:]:\n')
 			f.write("\t\targv = argvs.split('=', 1)\n")
 			f.write('\t\targ[argv[0]] = arg[argv[1]]\n')
-			f.write('\tnewCommandOrNotes(arg)')
+			f.write('\t' + filename.split('.', 1)[0] + '(arg)')
 		
 		# 新建对应的描述文件
 		with open(MD_LOAD + commandName + '.md', 'w', encoding='utf-8') as f:
