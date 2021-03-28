@@ -1,4 +1,35 @@
 
+## 文件整理
+
+## mdtools.py - md工具箱
+
+输入 md 内容，构建对应的工具箱类
+
+[代码]()
+[测试](code/tb_mdsplit.py)
+
+### md有序列表的保存形式
+
+md有序列表存在多种形式，可用 `def changeMdType()` 在各种形式间转换。
+
+md的保存形式包括以下几种：
+1. 字符串 - 包括换行的长字符串的形式（最后不能有'\n'）
+2. 列表 - 文档按行读取得到的列表（前面有'\t', 最后不能有'\n'）
+3. 树 - （结构见下面）
+4. nlists - [(n, text), (n, text), ...], n为缩进层数
+
+文档可以以字符串、列表两种形式进行读写；mdTree则是数据处理时较为方便的结构；nlists适合作为中转，既可以清晰地转为mdTree，也可以用各种形式转为字符串、列表。
+
+树的结构：
+``` python
+class mdTree():
+	def __init__(self, text="", children=[]):
+		# text 用来保存列表中每个节点上的内容
+		self.text = text
+		# children 作为列表保存多个 mdTree
+		self.children = children
+```
+
 ## 该分支计划前期实现的内容
 
 ### 行为层描述
