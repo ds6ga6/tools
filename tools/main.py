@@ -52,6 +52,9 @@ if(args['fileExtname']=='.md'):
 	# 打开命令，并读取对应的行
 	with open(args['relativeFile'], 'r', encoding='utf-8') as f:
 		command = f.readlines()[args['lineNumber']-1]
+	# 如果最后以 '\n' 结尾，就去掉
+	if(command[-1]=='\n'):
+		command = command[:-1]
 	# 判断是否是 inline command, 如果是就切出来
 	if(command.count('`')>=2):
 		command = command.split('`', 2)[1]
